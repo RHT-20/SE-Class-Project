@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile</title>
+    <title> New Recruitment </title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="static/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -26,13 +26,6 @@
 
     <!-- FAVICON -->
     <link href="static/img/favicon.png" rel="shortcut icon">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
 <!--===============================================================================================-->
 
@@ -66,51 +59,6 @@
     <link rel="stylesheet" a href="css3\font-awesome.min.css">
 <!--===============================================================================================-->
 
-    {#<script type="text/javascript">
-        function check()
-        {
-            pname = document.getElementById('InputNameId').value;
-            cpword = document.getElementById('InputCPasswordId').value;
-            ppword = document.getElementById('InputPasswordId').value;
-
-            lname = document.getElementById('IName');
-            liname = document.getElementById('InputNameId');
-            lcpword = document.getElementById('ICPassword');
-            lpword = document.getElementById('IPassword');
-
-            flag = false;
-
-            if(pname == "")
-            {
-                lname.innerHTML = "*Name field cannot be empty".fontcolor("RED").fontsize(2.5);
-                liname.value = "{{ list[0] }}";
-                flag = true;
-            }
-
-            if(cpword == "")
-            {
-                lcpword.innerHTML = "*Please enter your current password".fontcolor("RED").fontsize(2.5);
-                flag = true;
-            }
-            else if(cpword.length < 5)
-            {
-                lcpword.innerHTML = "*Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
-                flag = true;
-            }
-            else lcpword.innerHTML = "Current Password".fontcolor("Black");
-
-            if(ppword.length > 0 && ppword.length < 5)
-            {
-                lpword.innerHTML = "*Passwords must contain at least 5 characters".fontcolor("RED").fontsize(2.5);
-                flag = true;
-            }
-            else lpword.innerHTML = "Password".fontcolor("Black");
-
-            if(flag) return  false;
-            return  true;
-        }
-    </script>#}
-
 </head>
 
 <body class="body-wrapper">
@@ -120,24 +68,14 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg  navigation">
-                    <a class="navbar-brand" href="/home2" style="font-size: 20px">
-                        My App Store
-                        {#<img src="static/images/logo.png" alt="">#}
+                    <a class="navbar-brand" href="/" style="font-size: 20px">
+                        Future Tech Software Company
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mt-10">
-                            <form action="/" class="nav-item" onsubmit="true">
-							    <button type="submit" class="nav-link login-button">
-                                    Sign Out
-							    </button>
-                            </form>
-                        </ul>
-                    </div>
                 </nav>
             </div>
         </div>
@@ -145,48 +83,65 @@
 </section>
 
 <!--===================================
-=            Profile                  =
+=            Sign Up                  =
 ====================================-->
 
-<section class="card bg-gray">
-    <div class="p-p-l-42 p-t-20">
-        <img src="static/images/profile.png" style="border-radius: 50%">
-    </div>
+<section class="card bg-gray" style="padding-left: 33%">
+    <!--body part start-->
+    <div class="limiter">
+        <div class="container-login100">
 
-    <div class="p-p-l-36">
-        <form{# action="/edit_profile" onsubmit="return check()" method="post"#}>
-            <div class="form-group p-p-t-5">
-                <lebel for="fInputName" id="IName">Name</lebel>
-                <input type="text" class="form-control" id="InputNameId" name="InputName" value="Name" style="width: 45%">
+            <!-- form start -->
+            <div class="wrap-login100 p-l-70 p-r-70 p-t-60 p-b-70">
+                <br class="login100-form validate-form">
+                <span class="login100-form-title p-b-40">
+                    New Recruitment
+                </span>
+
+                <font color="red">{{ message }}</font>
+
+                <form action="/sign_up_response" method="post">
+                    <div class="form-group">
+                        <lebel for="fInputName" id="IName">{{ name }}</lebel>
+                        <input type="text" class="form-control" id="InputNameId" name="InputName" placeholder="Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fInputEmail" id="IEmail">{{ email }}</label>
+                        <input type="email" class="form-control" id="InputEmailId" name="InputEmail" placeholder="Email Address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fInputMobile" id="IMobile">{{ mobile }}</label>
+                        <input type="text" class="form-control" id="InputMobileId" name="InputMobile" placeholder="Mobile Number">
+                    </div>
+
+                    <div class="form-group">
+                        <lebel for="fInputAddress" id="IAddress">{{ address }}</lebel>
+                        <input type="text" class="form-control" id="InputAddressId" name="InputAddress" placeholder="Address">
+                    </div>
+
+                    <div class="form-group">
+                        <lebel for="fInputDOB" id="IDOB">{{ dob }}</lebel>
+                        <br>
+                        <input style="padding-left: 28%" type="date" id="InputDOBId" name="InputDOB">
+                    </div>
+
+                    <br>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
+            <!-- form end -->
 
-            <div class="form-group">
-                <label for="fInputEmail" id="IEmail">Email</label>
-                <input type="email" class="form-control" id="InputEmailId" name="InputEmail" value="Email" style="width: 45%" disabled>
-            </div>
-
-            <div class="form-group">
-                <lebel for="fInputCPassword" id="ICPassword">Current Password</lebel>
-                <input type="password" class="form-control" id="InputCPasswordId" name="InputCPassword" placeholder="Current Password" style="width: 45%">
-            </div>
-
-            <div class="form-group">
-                <lebel for="fInputPassword" id="IPassword">Password</lebel>
-                <input type="password" class="form-control" id="InputPasswordId" name="InputPassword" placeholder="Password" style="width: 45%">
-            </div>
-
-            <br>
-            <div class=" p-p-b-10 container-login100-form-btn">
-                <div class="wrap-login100-form-btn">
-                    <div class="login100-form-bgbtn"></div>
-                    <button class="login100-form-btn_edited" type="submit">
-                        Save
-                    </button>
-                </div>
-            </div>
-
-        </form>
-
+        </div>
     </div>
 </section>
 
@@ -218,7 +173,7 @@
     <!-- Container End -->
     <!-- To Top -->
     <div class="top-to">
-        <a id="top" class="" href="/profile"><i class="fa fa-angle-up"></i></a>
+        <a id="top" class="" href="/sign_up_form"><i class="fa fa-angle-up"></i></a>
     </div>
 </footer>
 
