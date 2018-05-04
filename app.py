@@ -24,7 +24,6 @@ def sign_up_form():
 
 @app.route('/sign_up_response', methods=['POST'])
 def sign_up_response():
-
     u_name = request.form['InputName']
     u_email = request.form['InputEmail']
     u_mobile = request.form['InputMobile']
@@ -48,7 +47,7 @@ def sign_up_response():
         if not data:
             cur.execute("INSERT INTO Employee(name, email, mobile, address, birth_date)"
                         " VALUES(%s, %s, %s, %s, %s)",
-                            (u_name, u_email, u_mobile, u_address, u_dob))
+                        (u_name, u_email, u_mobile, u_address, u_dob))
 
             return str("Welcome")
 
@@ -94,6 +93,26 @@ def sign_in_response():
 
         else:
             return str("Welcome")
+
+
+# Shohan working from here
+
+@app.route('/x')
+def home2():
+    return render_template("new_project.html", list=list)
+
+
+@app.route('/create_project', methods=['POST'])
+def create_project():
+    project_name = request.form['project_name'];
+    team_Leader = request.form['team_Leader'];
+    member_1 = request.form['member_1'];
+    member_2 = request.form['member_2'];
+    member_3 = request.form['member_3'];
+    deadLine = request.form['deadLine'];
+    client_name = request.form['client_name'];
+
+    return (project_name + team_Leader + member_1 + member_2 + member_3 + deadLine + client_name)
 
 
 if __name__ == '__main__':
