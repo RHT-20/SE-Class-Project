@@ -5,11 +5,12 @@ import MySQLdb
 app = Flask(__name__)
 
 mysql = MySQL(app)
-conn = MySQLdb.connect(host="localhost", user="root", password="rht20", db="Future_Tech_Software_Company")
+#conn = MySQLdb.connect(host="localhost", user="root", password="rht20", db="Future_Tech_Software_Company")
+conn = MySQLdb.connect(host="localhost", user="root", password="shohan", db="Future_Tech_Software_Company")
 mysql.init_app(app)
 
 
-@app.route('/')
+@app.route('/x')
 def home():
     return render_template("home.html")
 
@@ -97,7 +98,7 @@ def sign_in_response():
 
 # Shohan working from here
 
-@app.route('/x')
+@app.route('/')
 def home2():
     return render_template("new_project.html", list=list)
 
@@ -112,7 +113,25 @@ def create_project():
     deadLine = request.form['deadLine'];
     client_name = request.form['client_name'];
 
-    return (project_name + team_Leader + member_1 + member_2 + member_3 + deadLine + client_name)
+    if request.method == 'POST':
+
+        # Create cursor
+        cur = conn.cursor()
+        cur.execute("INSERT INTO NewProject(project_name, team_Leader, member_1,member_2,member_3,deadLine,client_name) VALUES(%s, %s, %s,%s, %s, %s,%s)",
+                    (project_name, team_Leader, member_1,member_2,member_3,deadLine,client_name))
+        conn.commit()
+        cur.close()
+
+
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM NewProject WHERE project_name = (%s)",(project_name,))
+        #cur.execute("SELECT * FROM Employee WHERE email = (%s)", (u_email,))
+        data = cur.fetchall()
+
+        #print(data)
+        return data
+
+    #return (project_name + team_Leader + member_1 + member_2 + member_3 + deadLine + client_name)
 
 
 if __name__ == '__main__':
